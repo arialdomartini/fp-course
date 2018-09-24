@@ -1,0 +1,5 @@
+require-stack-version: ">= 1.6.1"
+resolver: ../../../stack-snapshot.yaml
+
+packages:
+- .
