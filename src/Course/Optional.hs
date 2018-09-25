@@ -56,7 +56,7 @@ bindOptional f (Full a) = f a
   -> a
   -> a
 (??) Empty alt = alt
-(??) (Full a) alt = a
+(??) (Full a) _ = a
 
 -- | Try the first optional for a value. If it has a value, use it; otherwise,
 -- use the second value.
@@ -76,8 +76,9 @@ bindOptional f (Full a) = f a
   Optional a
   -> Optional a
   -> Optional a
-(<+>) =
-  error "todo: Course.Optional#(<+>)"  
+(<+>) Empty a = a
+(<+>) (Full a) _ = Full a
+
 
 applyOptional :: Optional (a -> b) -> Optional a -> Optional b
 applyOptional f a = bindOptional (\f' -> mapOptional f' a) f
